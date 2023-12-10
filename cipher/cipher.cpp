@@ -17,7 +17,7 @@ void encrypt(const std::string& inputFile, const std::string& outputFile, const 
     SecByteBlock key(AES::DEFAULT_KEYLENGTH); //DEFAULT_KEYLENGTH обычно 16 байт 
 
     // Создаем объект PBKDF2 для выработки ключа из пароля
-    PKCS12_PBKDF<SHA256> pbkdf;
+    PKCS12_PBKDF<md5> pbkdf;
     pbkdf.DeriveKey(key, key.size(), 0, (byte*)password.data(), password.size(), NULL, 0, 1024, 0.0f);
 
     // Создаем вектор инициализации
@@ -37,7 +37,7 @@ void decrypt(const std::string& inputFile, const std::string& outputFile, const 
     SecByteBlock key(AES::DEFAULT_KEYLENGTH);
 
     // Создаем объект PBKDF2 для выработки ключа из пароля
-    PKCS12_PBKDF<SHA256> pbkdf;
+    PKCS12_PBKDF<md5> pbkdf;
     pbkdf.DeriveKey(key, key.size(), 0, (byte*)password.data(), password.size(), NULL, 0, 1024, 0.0f);
 
     // Создаем вектор инициализации
